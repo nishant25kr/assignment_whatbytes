@@ -1,24 +1,35 @@
 import mongoose from "mongoose";
 
 const appointmentSchema = new mongoose.Schema({
-    patient: { 
+    patient: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Patient", 
-        required: true 
+        ref: "Patient",
+        required: true
     },
-    doctor: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "Doctor", 
-        required: true 
+    patientdetails: {
+        type: mongoose.Schema.Types.Mixed,
+        default: null,
+        strict: false
     },
-    date: { 
-        type: Date, 
-        required: true 
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Doctor",
+        required: true
     },
-    status: { 
-        type: String, 
-        enum: ["Scheduled", "Completed", "Cancelled"], 
-        default: "Scheduled" 
+    doctorDetails: {
+        type: mongoose.Schema.Types.Mixed,
+        default: null,
+        strict: false
+    },
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    },
+    status: {
+        type: String,
+        enum: ["Scheduled", "Completed", "Cancelled"],
+        default: "Scheduled"
     },
     notes: String,
 
